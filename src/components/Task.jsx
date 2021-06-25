@@ -1,12 +1,17 @@
 import React, { useState, useContext } from 'react'
+import StateContext from '../StateContext'
 import DispatchContext from '../DispatchContext'
+import { handleTasks } from '../api'
 
 export const Task = ({ task }) => {
-  const [disabled, setDisabled] = useState(false)
+  const { tasks } = useContext(StateContext)
   const dispatch = useContext(DispatchContext)
+  const [disabled, setDisabled] = useState(false)
   const handleRemove = (id) => {
     try {
-      alert(id)
+      setDisabled(true)
+      const response = await handleTasks('delete', tasks, { id })
+      dispatch({ type: 'set-tasks', tasks: response })
     } catch (e) { console.log(e) }
   }
   return(
