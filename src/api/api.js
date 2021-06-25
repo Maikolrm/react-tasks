@@ -25,11 +25,14 @@ export const fetchTasks = () => {
 export const handleTasks = (action, tasks, params) => {
   return new Promise(async (resolve, reject) => {
     try {
-      const taskCopy = [...tasks]
+      let taskCopy = [...tasks]
       const { data } = await axios.post(`${action}-task`, params)
       switch (action) {
         case 'create':
           taskCopy.unshift(data)
+          break
+        case 'delete':
+          taskCopy = taskCopy.filter(task => task.id !== params.id)
           break
       }
       resolve(taskCopy)
