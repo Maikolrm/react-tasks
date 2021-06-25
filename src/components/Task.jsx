@@ -7,28 +7,22 @@ export const Task = ({ task }) => {
   const { tasks } = useContext(StateContext)
   const dispatch = useContext(DispatchContext)
   const [disabled, setDisabled] = useState(false)
-  const handleRemove = async (id) => {
+  const handleTask = async (action, params) => {
     try {
-      setDisabled(true)
-      const response = await handleTasks('delete', tasks, { id })
-      dispatch({ type: 'set-tasks', tasks: response })
-    } catch (e) { console.log(e) }
-  }
-  const handleComplete = async (id, completed) => {
-    try {
-      const response = await handleTasks('complete', tasks, { id, completed })
+      if (action === 'delete') setDisabled(true)
+      const response = await handleTasks(action, tasks, params)
       dispatch({ type: 'set-tasks', tasks: response })
     } catch (e) { console.log(e) }
   }
   return(
     <div className={"task " + (task.completed ? 'completed' : '')}>
-      <button className={"task__status fas " + (task.completed ? 'fa-check' : 'fa-clock')} onClick={() => handleComplete(task.id, task.completed)}></button>
+      <button className={"task__status fas " + (task.completed ? 'fa-check' : 'fa-clock')} onClick={() => handleTask('complete', { id: task.id, completed: task.completed })}></button>
       <p className="task__time">{ task.createdDate }</p>
       <div className="task__description">
         { task.description }
         <div className="task__actions">
           <button className="task__action fas fa-cog" onClick={() => dispatch({ type: 'show-form', value: true, task: { id: task.id, description: task.description } })}></button>
-          <button disabled={disabled} className={"task__action task__action--alert fas " + (disabled ? 'fa-circle-notch' : 'fa-trash')} onClick={() => handleRemove(task.id)}></button>
+          <button disabled={disabled} className={"task__action task__action--alert fas " + (disabled ? 'fa-circle-notch' : 'fa-trash')} onClick={() => handleTask('delete', { id: task.id })}></button>
         </div>
       </div>
     </div>
