@@ -40,6 +40,7 @@ export const handleTasks = (action, tasks, params) => {
               return { ...task, completed: data.completed }
             } else { return task }
           }) // MAP END
+          break
         case 'update':
           taskCopy = taskCopy.map(task => {
             if (task.id === params.id) {
