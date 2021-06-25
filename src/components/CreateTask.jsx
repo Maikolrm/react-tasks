@@ -6,9 +6,8 @@ import DispatchContext from '../DispatchContext'
 import { handleTasks } from '../api'
 
 export const CreateTask = () => {
-  const { tasks } = useContext(StateContext)
+  const { tasks, toUpdate } = useContext(StateContext)
   const appDispatch = useContext(DispatchContext)
-  const { toUpdate } = useContext(StateContext)
   const initialState = {
     task: { value: '', hasErrors: false },
     disabled: false,
