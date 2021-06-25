@@ -40,6 +40,12 @@ export const handleTasks = (action, tasks, params) => {
               return { ...task, completed: data.completed }
             } else { return task }
           }) // MAP END
+        case 'update':
+          taskCopy = taskCopy.map(task => {
+            if (task.id === params.id) {
+              return { ...task, description: data.description }
+            } else { return task }
+          }) // MAP END
       }
       resolve(taskCopy)
     } catch (e) { reject(e) }
