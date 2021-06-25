@@ -37,6 +37,11 @@ export const CreateTask = () => {
       dispatch({ type: 'submit' })
     } catch (e) { console.log(e) }
   }
+  // WATCH FOR CHANGES ON TASK TO BE UPDATED
+  useEffect(() => {
+    if (toUpdate) dispatch({ type: 'set-task', value: toUpdate.description.trim() })
+  }, [toUpdate])
+  // WATCH FOR CHANGES ON SENDCOUNT
   useEffect(() => {
     document.addEventListener('keyup', (e) => {
       if (e.keyCode === 27) appDispatch({ type: 'show-form', value: false })
@@ -45,7 +50,7 @@ export const CreateTask = () => {
   useEffect(() => {
     if (state.sendCount) {
       const sendRequest = async () => {
-        const response = await handleTasks('create', tasks, { description: state.task.value })
+        const response = await handleTasks(toUpdate ? 'update' : 'create', tasks, { id: toUpdate ? toUpdate.id : '', description: state.task.value })
         appDispatch({ type: 'set-tasks', tasks: response })
         appDispatch({ type: 'show-form', value: false })
       }
