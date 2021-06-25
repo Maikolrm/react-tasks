@@ -1,10 +1,13 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { BtnLoader } from './BtnLoader'
 import { useImmerReducer } from 'use-immer'
+import StateContext from '../StateContext'
 import DispatchContext from '../DispatchContext'
 import StateContext from '../StateContext'
+import { handleTasks } from '../api'
 
 export const CreateTask = () => {
+  const { tasks } = useContext(StateContext)
   const appDispatch = useContext(DispatchContext)
   const { toUpdate } = useContext(StateContext)
   const initialState = {
@@ -22,7 +25,10 @@ export const CreateTask = () => {
         if (task.value && /[^a-z0-9\s?]/gi.test(task.value)) task.hasErrors = true
         break
       case 'submit':
-        if (!draft.task.hasErrors) draft.sendCount++
+        if (!draft.task.hasErrors) {
+          draft.disabled = true
+          draft.sendCount++
+        }
     }
   }
   const [state, dispatch] = useImmerReducer(reducer, initialState)
@@ -40,7 +46,12 @@ export const CreateTask = () => {
   }, [])
   useEffect(() => {
     if (state.sendCount) {
-      alert('We are ready to submit....')
+      const sendRequest = async () => {
+        const response = await handleTasks('create', tasks, { description: state.task.value })
+        appDispatch({ type: 'set-tasks', tasks: response })
+        appDispatch({ type: 'show-form', value: false })
+      }
+      sendRequest()
     }
   }, [state.sendCount])
   return(
