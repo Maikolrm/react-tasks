@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import DispatchContext from '../DispatchContext'
 
 export const CreateTask = () => {
+  const dispatch = useContext(DispatchContext)
   return(
     <div className="modal visible">
-      <span className="close-btn fas fa-times"></span>
+      <span className="close-btn fas fa-times" onClick={() => dispatch({ type: 'show-form' , value: false })}></span>
       <form id="create-task" autoComplete="off">
         <h2 className="form__heading">New Task</h2>
         <div className="form__content">
