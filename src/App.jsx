@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useImmerReducer } from 'use-immer'
 
 // STYLES
@@ -31,6 +31,7 @@ export const App = () => {
     switch (action.type) {
       case 'login':
         draft.loggedIn = true
+        draft.user = action.user
         break
       case 'logout':
         draft.loggedIn = false
@@ -50,6 +51,13 @@ export const App = () => {
     }
   }
   const [state, dispatch] = useImmerReducer(reducer, initialState)
+  useEffect(() => {
+    if (state.loggedIn) {
+      localStorage.setItem('user', JSON.stringify(state.user))
+    } else {
+      localStorage.removeItem('user')
+    }
+  }, [state.loggedIn])
   return(
     <StateContext.Provider value={state}>
       <DispatchContext.Provider value={dispatch}>
