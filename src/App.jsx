@@ -37,6 +37,9 @@ export const App = () => {
       case 'show-form':
         draft.isVisible = action.value
         break
+      case 'set-tasks':
+        draft.tasks = action.tasks
+        break
     }
   }
   const [state, dispatch] = useImmerReducer(reducer, initialState)
