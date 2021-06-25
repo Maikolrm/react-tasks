@@ -14,9 +14,15 @@ export const Task = ({ task }) => {
       dispatch({ type: 'set-tasks', tasks: response })
     } catch (e) { console.log(e) }
   }
+  const handleComplete = async (id, completed) => {
+    try {
+      const response = await handleTasks('complete', tasks, { id, completed })
+      dispatch({ type: 'set-tasks', tasks: response })
+    } catch (e) { console.log(e) }
+  }
   return(
     <div className={"task " + (task.completed ? 'completed' : '')}>
-      <button className={"task__status fas " + (task.completed ? 'fa-check' : 'fa-clock')}></button>
+      <button className={"task__status fas " + (task.completed ? 'fa-check' : 'fa-clock')} onClick={() => handleComplete(task.id, task.completed)}></button>
       <p className="task__time">{ task.createdDate }</p>
       <div className="task__description">
         { task.description }
