@@ -34,6 +34,12 @@ export const handleTasks = (action, tasks, params) => {
         case 'delete':
           taskCopy = taskCopy.filter(task => task.id !== params.id)
           break
+        case 'complete':
+          taskCopy = taskCopy.map(task => {
+            if (task.id === params.id) {
+              return { ...task, completed: data.completed }
+            } else { return task }
+          }) // MAP END
       }
       resolve(taskCopy)
     } catch (e) { reject(e) }
