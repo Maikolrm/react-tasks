@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { TopSection, Content, Navigation, CreateTask } from './'
+import StateContext from '../StateContext'
 
 export const Dashboard = () => {
+  const { isVisible } = useContext(StateContext)
   return(
     <>
-      {/* <CreateTask /> */}
+      { isVisible ? <CreateTask /> : '' }
       <TopSection />
       <Content />
       <Navigation />
