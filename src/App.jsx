@@ -22,8 +22,8 @@ import DispatchContext from './DispatchContext'
 export const App = () => {
   const initialState = {
     tasks: [],
-    user: '',
-    loggedIn: false,
+    user: JSON.parse(localStorage.getItem('user')),
+    loggedIn: Boolean(localStorage.getItem('user')),
     isVisible: false,
     toUpdate: null
   }
