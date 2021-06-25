@@ -10,3 +10,13 @@ export const login = (email) => {
     } catch (e) { reject(e) }
   }) // PPROMISE END
 }
+
+// FETCH TASKS
+export const fetchTasks = () => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const { data } = await axios.get('/fetch-tasks')
+      resolve(data)
+    } catch (e) { reject(e) }
+  }) // PPROMISE END
+}
