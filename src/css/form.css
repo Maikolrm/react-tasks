@@ -1,0 +1,70 @@
+/*
+  FORM - CREATE TAKS */
+#create-task { margin: auto; width: 100% }
+
+/* FORM - HEADING */
+.form__heading {
+  padding-bottom: 15px;
+  font: 500 12px Ubuntu;
+  text-align: center;
+  color: var(--task-color);
+  text-transform: uppercase;
+}
+
+/* FORM - ROW */
+.form__row {
+  display: flex;
+  height: 40px;
+  margin-bottom: 10px;
+  background: var(--root-bg);
+  border-radius: 3px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .2);
+  /* overflow: hidden; */
+  line-height: 40px
+}
+
+/* FORM - FIELD */
+.form__field {
+  flex: 1;
+  height: inherit;
+  background: var(--root-bg);
+  font: 500 14px Ubuntu;
+  color: var(--task-color);
+  line-height: inherit
+}
+
+/* FORM - FIELD ICON */
+.field__icon {
+  width: 40px;
+  opacity: .3;
+  text-align: center;
+  color: var(--task-color);
+  line-height: inherit;
+  transition: var(--transition)
+}
+.field__icon--action { cursor: pointer }
+.field__icon--alert { opacity: 0 }
+
+/* FORM - INVLAID FIELD */
+.form__field.invalid + .field__icon,
+.form__field.invalid + .field__icon--alert,
+.field__icon--action:hover { opacity: 1 }
+.form__field.invalid + .field__icon { color: red }
+
+/* FORM - BTN */
+.form__btn {
+  display: block;
+  width: 100%;
+  height: 40px;
+  opacity: .8;
+  background: steelblue;
+  border-radius: 3px;
+  font: 500 12px Ubuntu;
+  line-height: 40px;
+  color: #fff;
+  transition: var(--transition)
+}
+.form__btn:hover, .form__btn:focus { opacity: 1 }
+
+/* FORM BTN - DISABLED */
+.form__btn[disabled] { opacity: .8; cursor: default }

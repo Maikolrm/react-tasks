@@ -1,0 +1,24 @@
+/*
+  TOP SECTION */
+.top-section { padding: var(--border-rd); min-height: 200px }
+
+/* TOP SECTION - USER */
+.top-section__user { display: flex; align-items: center }
+
+/* USER - INFO */
+.user__info { padding-left: 20px }
+
+/* USER - NAME */
+.user__name { padding-bottom: 10px; font: 500 16px Ubuntu; color: #fff; line-height: 1; text-shadow: 0 1px 1px rgba(0, 0, 0, .1) }
+
+/* USER - TASKS */
+.user__tasks { font: 400 12px Ubuntu; color: #fff; opacity: .6; letter-spacing: 1px }
+
+/* USER - AVATAR */
+.user__avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, .3)
+}

@@ -1,0 +1,33 @@
+/*
+  CONTENT */
+.content { flex: 1 }
+
+/* HOMEPAGE */
+.content--homepage { display: flex; flex-direction: column; padding: 15px; background: #fff }
+
+/* HOMEPAGE - TOP SECTION */
+.homepage__top-section { flex: 1 }
+
+/* TOP SECTION - ICON */
+.top-section__icon {
+  top: 50%;
+  transform: translate(75%, -50%);
+  right: 0;
+  z-index: 1;
+  font-size: 350px;
+  color: var(--root-bg);
+  text-shadow: 0 1px 1px rgba(0, 0, 0, .2)
+}
+
+/* CONTENT - DASHBOARD */
+.content--dashboard {
+  border-radius: calc(var(--border-rd) * 1.5) calc(var(--border-rd) * 1.5) 0 0;
+  padding: 40px 20px;
+  background: var(--root-bg);
+  overflow: auto;
+  padding-bottom: calc(80px + 20px)
+}
+.content--dashboard::-webkit-scrollbar { display: none }
+
+/* CONTENT - HEADING */
+.content__heading { font: 500 12px Ubuntu; line-height: 1; text-align: center; color: #0f193c; text-transform: uppercase; letter-spacing: 1px }

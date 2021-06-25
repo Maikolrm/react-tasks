@@ -1,0 +1,74 @@
+/*
+  CONTENT - TASKS */
+.content__tasks { padding-top: 30px }
+
+/* TASK */
+.task { display: flex; align-items: center; margin-bottom: 20px }
+.task:last-child { margin-bottom: 0 }
+
+/* TASK - STATUS */
+.task__status {
+  display: block;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--orange);
+  font-size: 11px;
+  text-align: center;
+  line-height: 20px;
+  color: #fff;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, .2);
+  /* transition: var(--transition) */
+}
+
+/* TASK - TIME */
+.task__time { flex: 1; font: 600 12px Ubuntu; text-align: center; letter-spacing: 1px; color: var(--task-color) }
+
+/* TASK - DESCRIPTION */
+.task__description {
+  width: 75%;
+  height: var(--task-description-hg);
+  background: #fff;
+  padding: 0 10px;
+  border-radius: calc(var(--border-rd) / 2);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, .1);
+  font: 500 14px Ubuntu;
+  line-height: var(--task-description-hg);
+  color: var(--task-color);
+  overflow: hidden;
+  transition: var(--transition)
+}
+
+/* TASK - ACTIOS */
+.task__actions {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1;
+  width: 40px;
+  height: 100%;
+  transition: var(--transition)
+}
+
+/* TASK - ACTION */
+.task__action {
+  display: block;
+  width: 100%;
+  height: calc(var(--task-description-hg) / 2);
+  opacity: .3;
+  font-size: 14px;
+  color: var(--task-color);
+  line-height: calc(var(--task-description-hg) / 2);
+  transition: var(--transition)
+}
+
+/* TASK - COPLETED */
+.task.completed .task__status { background: var(--green) }
+.task.completed .task__action { opacity: .5; color: #fff }
+.task.completed .task__description { background: var(--orange); color: #ffebdb; box-shadow: none }
+.task .task__action[disabled], .task.completed .task__action[disabled] { opacity: 1; animation: spin .5s linear infinite }
+
+/* TASK - ACTION - HOVER EFFECT */
+.task__action--alert:hover, .task .task__action[disabled] { color: red }
+.task.completed .task__action[disabled] { color: #fff }
+.task__action:hover, .task.completed .task__action:hover { opacity: 1 }

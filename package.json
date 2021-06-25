@@ -1,0 +1,21 @@
+{
+  "name": "react-tasks-new",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "snowpack dev",
+    "build": "snowpack build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "snowpack": "^3.6.2"
+  },
+  "devDependencies": {
+    "@snowpack/plugin-react-refresh": "^2.5.0"
+  }
+}

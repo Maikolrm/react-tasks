@@ -1,0 +1,37 @@
+/*
+  CREATE TASK */
+.modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  padding: 0 10px;
+  display: flex
+}
+
+/* CSSTransition CLASSES */
+.modal-enter { opacity: 0; transform: scale(1.1) }
+.modal-enter-active { opacity: 1; transform: scale(1); transition: var(--transition) }
+.modal-exit { opacity: 1; transform: scale(1) }
+.modal-exit-active { opacity: 0; transform: scale(1.1); transition: var(--transition) }
+
+/* MODAL - CLOSE BTN */
+.close-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 1;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  font-size: 16px;
+  text-align: center;
+  color: var(--task-color);
+  line-height: 40px;
+  border-radius: 50%;
+  transition: var(--transition)
+}
+.close-btn:hover { background: var(--root-bg) }
