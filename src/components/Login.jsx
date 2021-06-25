@@ -1,15 +1,18 @@
 import React, { useState, useContext } from 'react'
 import { BtnLoader } from './'
 import DispatchContext from '../DispatchContext'
+import { login } from '../api'
 
 export const Login = () => {
   const [visible, setVisible] = useState(false)
   const [disabled, setDisabled] = useState(false)
   const dispatch = useContext(DispatchContext)
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     try {
       e.preventDefault()
-      dispatch({ type: 'login', user: { name: 'Maikol', lastname: 'Hernandez' } })
+      setDisabled(true)
+      const user = await login('maikol_hernandez_rm@hotmail.com')
+      dispatch({ type: 'login', user: user })
     } catch (e) { console.log(e) }
   }
   return(
