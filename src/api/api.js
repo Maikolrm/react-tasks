@@ -20,3 +20,19 @@ export const fetchTasks = () => {
     } catch (e) { reject(e) }
   }) // PPROMISE END
 }
+
+// HANDLE TASKS
+export const handleTasks = (action, tasks, params) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const taskCopy = [...tasks]
+      const { data } = await axios.post(`${action}-task`, params)
+      switch (action) {
+        case 'create':
+          taskCopy.unshift(data)
+          break
+      }
+      resolve(taskCopy)
+    } catch (e) { reject(e) }
+  }) // PPROMISE END
+}
