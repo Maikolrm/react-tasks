@@ -3,7 +3,6 @@ import { BtnLoader } from './BtnLoader'
 import { useImmerReducer } from 'use-immer'
 import StateContext from '../StateContext'
 import DispatchContext from '../DispatchContext'
-import StateContext from '../StateContext'
 import { handleTasks } from '../api'
 
 export const CreateTask = () => {

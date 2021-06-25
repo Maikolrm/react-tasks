@@ -7,7 +7,7 @@ export const Task = ({ task }) => {
   const { tasks } = useContext(StateContext)
   const dispatch = useContext(DispatchContext)
   const [disabled, setDisabled] = useState(false)
-  const handleRemove = (id) => {
+  const handleRemove = async (id) => {
     try {
       setDisabled(true)
       const response = await handleTasks('delete', tasks, { id })
