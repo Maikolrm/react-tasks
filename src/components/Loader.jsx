@@ -9,5 +9,3 @@ export const Loader = () => {
     </div>
   )
 }
-
-export default Loader

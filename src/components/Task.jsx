@@ -24,5 +24,3 @@ export const Task = ({ task }) => {
   )
 
 }
-
-export default Task
