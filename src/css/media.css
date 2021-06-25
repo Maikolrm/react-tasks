@@ -1,0 +1,13 @@
+/* DEFAULT STYLES */
+[readonly], [disabled] { cursor: default; opacity: 1 }
+
+/* SPIN ANIMATION */
+@-webkit-keyframes spin { to { transform: rotateZ(360deg) } }
+
+/*
+  MEDIA */
+@media screen and (min-width: 450px) {
+  /*
+    ROOT */
+  #root { border-radius: var(--border-rd) }
+}

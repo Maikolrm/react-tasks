@@ -1,0 +1,33 @@
+/* LOADER */
+*[class*='loader'] {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  padding: 7px;
+  margin: auto;
+  animation: spin 1s linear infinite
+}
+
+/* LOADER - BTN */
+.loader--btn {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  z-index: 1;
+  margin-left: -20px
+}
+
+/* LOADER - CENTER */
+.loader__center {
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  border: 2px solid transparent;
+  border-bottom-color: #fff;
+  border-top-color: #fff;
+}
+
+.loader__center--blue {
+  border-bottom-color: var(--blue);
+  border-top-color: var(--blue);
+}
