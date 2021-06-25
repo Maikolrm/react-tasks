@@ -2,9 +2,11 @@ import React, { useState, useEffect, useContext } from 'react'
 import { BtnLoader } from './BtnLoader'
 import { useImmerReducer } from 'use-immer'
 import DispatchContext from '../DispatchContext'
+import StateContext from '../StateContext'
 
 export const CreateTask = () => {
   const appDispatch = useContext(DispatchContext)
+  const { toUpdate } = useContext(StateContext)
   const initialState = {
     task: { value: '', hasErrors: false },
     disabled: false,
@@ -40,14 +42,14 @@ export const CreateTask = () => {
     <div className="modal visible">
       <span className="close-btn fas fa-times" onClick={() => appDispatch({ type: 'show-form' , value: false })}></span>
       <form id="create-task" autoComplete="off" onSubmit={handleSubmit}>
-        <h2 className="form__heading">New Task</h2>
+        <h2 className="form__heading">{toUpdate ? 'Update' : 'New Task' }</h2>
         <div className="form__content">
           <div className="form__row">
             <span className="field__icon fas fa-tasks"></span>
             <input value={state.task.value} className={"form__field " + (state.task.hasErrors ? 'invalid' : '' )} name="task-description" onChange={e => dispatch({ type: 'set-task', value: e.target.value})} autoFocus />
             <span className="field__icon field__icon--alert fas fa-info-circle"></span>
           </div>
-          <button disabled={state.disabled} className="form__btn">{state.disabled ? <BtnLoader /> : 'Create'}</button>
+          <button disabled={state.disabled} className="form__btn">{state.disabled ? <BtnLoader /> : toUpdate ? 'Save Changes' : 'Create'}</button>
         </div>
       </form>
     </div>
