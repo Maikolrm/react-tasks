@@ -34,6 +34,7 @@ export const App = () => {
         break
       case 'logout':
         draft.loggedIn = false
+        draft.tasks = []
         break
       case 'show-form':
         draft.isVisible = action.value
