@@ -1,7 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
+import DispatchContext from '../DispatchContext'
 
 export const Task = ({ task }) => {
   const [disabled, setDisabled] = useState(false)
+  const dispatch = useContext(DispatchContext)
   const handleRemove = (id) => {
     try {
       alert(id)
@@ -14,7 +16,7 @@ export const Task = ({ task }) => {
       <div className="task__description">
         { task.description }
         <div className="task__actions">
-          <button className="task__action fas fa-cog"></button>
+          <button className="task__action fas fa-cog" onClick={() => dispatch({ type: 'show-form', value: true, task: { id: task.id, description: task.description } })}></button>
           <button disabled={disabled} className={"task__action task__action--alert fas " + (disabled ? 'fa-circle-notch' : 'fa-trash')} onClick={() => handleRemove(task.id)}></button>
         </div>
       </div>

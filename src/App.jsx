@@ -24,7 +24,8 @@ export const App = () => {
     tasks: [],
     user: '',
     loggedIn: false,
-    isVisible: false
+    isVisible: false,
+    toUpdate: null
   }
   const reducer = (draft, action) => {
     switch (action.type) {
@@ -36,6 +37,11 @@ export const App = () => {
         break
       case 'show-form':
         draft.isVisible = action.value
+        if (action.task) {
+          draft.toUpdate = action.task
+        } else {
+          draft.toUpdate = null
+        }
         break
       case 'set-tasks':
         draft.tasks = action.tasks
