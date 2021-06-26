@@ -36,16 +36,14 @@ export const handleTasks = (action, tasks, params) => {
           break
         case 'complete':
           taskCopy = taskCopy.map(task => {
-            if (task.id === params.id) {
-              return { ...task, completed: data.completed }
-            } else { return task }
+            if (task.id === params.id)  return { ...task, completed: data.completed }
+            return task
           }) // MAP END
           break
         case 'update':
           taskCopy = taskCopy.map(task => {
-            if (task.id === params.id) {
-              return { ...task, description: data.description }
-            } else { return task }
+            if (task.id === params.id) return { ...task, description: data.description }
+            return task
           }) // MAP END
       }
       resolve(taskCopy)
