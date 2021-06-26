@@ -1,6 +1,7 @@
 export * from './Homepage'
 export * from './Dashboard'
 // DAHSBOARD RELATED COMPONENTS
+export * from './Page'
 export * from './Login'
 export * from './BtnLoader'
 export * from './Loader'
