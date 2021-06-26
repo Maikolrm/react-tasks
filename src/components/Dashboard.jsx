@@ -6,7 +6,7 @@ import DispatchContext from '../DispatchContext'
 import { fetchTasks } from '../api'
 
 export const Dashboard = () => {
-  const { isVisible } = useContext(StateContext)
+  const { user, isVisible } = useContext(StateContext)
   const dispatch = useContext(DispatchContext)
   const [loading, setLoading] = useState(true)
   useEffect(() => {
@@ -20,7 +20,8 @@ export const Dashboard = () => {
     fetchData()
   }, [])
   return(
-    <Page title='Dasbaord!' >
+    <Page title={`${user.name} ${user.lastname}`}>
+      { loading ? <Loader /> : '' }
       <CSSTransition in={isVisible} timeout={200} classNames='modal' unmountOnExit>
         <CreateTask />
       </CSSTransition>
