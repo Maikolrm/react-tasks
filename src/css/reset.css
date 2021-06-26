@@ -52,6 +52,13 @@ body { height: 100vh; display: flex; background: var(--body-bg) }
   background: -webkit-linear-gradient(top, var(--blue) 1%, var(--dark-blue) 99%);
   border-radius: var(--border-rd);
   box-shadow: 0 20px 60px rgba(0, 0, 0, .2);
+  overflow: hidden
+}
+
+/*
+  MAIN */
+main {
+  height: 100%;
   display: flex;
   flex-direction: column;
   overflow: hidden
