@@ -34,6 +34,11 @@ export const CreateTask = () => {
     } catch (e) { console.log(e) }
   }
   useEffect(() => {
+    document.addEventListener('keyup', (e) => {
+      if (e.keyCode === 27) appDispatch({ type: 'show-form', value: false })
+    })
+  }, [])
+  useEffect(() => {
     if (state.sendCount) {
       alert('We are ready to submit....')
     }
