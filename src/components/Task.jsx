@@ -16,7 +16,7 @@ export const Task = ({ task }) => {
   }
   return(
     <div className={"task " + (task.completed ? 'completed' : '')}>
-      <button className={"task__status fas " + (task.completed ? 'fa-check' : 'fa-clock')} onClick={() => handleTask('complete', { id: task.id, completed: task.completed })}></button>
+      <button className={"task__status fas " + (task.completed ? 'fa-check' : 'fa-clock')} onClick={() => handleTask('complete', { id: task.id, completed: !task.completed })}></button>
       <p className="task__time">{ task.createdDate }</p>
       <div className="task__description">
         { task.description }
