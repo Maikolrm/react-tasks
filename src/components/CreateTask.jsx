@@ -41,12 +41,13 @@ export const CreateTask = () => {
   useEffect(() => {
     if (toUpdate) dispatch({ type: 'set-task', value: toUpdate.description.trim() })
   }, [toUpdate])
-  // WATCH FOR CHANGES ON SENDCOUNT
+  // EVENT TO HIDE FORM
   useEffect(() => {
     document.addEventListener('keyup', (e) => {
       if (e.keyCode === 27) appDispatch({ type: 'show-form', value: false })
     })
   }, [])
+  // WATCH FOR CHANGES ON SENDCOUNT
   useEffect(() => {
     if (state.sendCount) {
       const sendRequest = async () => {
