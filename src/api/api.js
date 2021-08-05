@@ -1,12 +1,16 @@
 import axios from 'axios'
-axios.defaults.baseURL = 'http://localhost:5000'
+import md5 from 'md5'
 
 // LOGIN
 export const login = (email) => {
   return new Promise(async (resolve, reject) => {
     try {
-      const { data } = await axios.post('/login', { email })
-      resolve(data)
+      const user = {
+        name: 'Maikol',
+        lastname: 'Hernández',
+        avatar: `https://www.gravatar.com/avatar/${md5(email)}?s=200`
+      }
+      setTimeout(() => resolve(user), 200)
     } catch (e) { reject(e) }
   }) // PPROMISE END
 }
