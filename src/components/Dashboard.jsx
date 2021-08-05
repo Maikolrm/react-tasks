@@ -6,13 +6,12 @@ import DispatchContext from '../DispatchContext'
 import { fetchTasks } from '../api'
 
 export const Dashboard = () => {
-  const { user, isVisible } = useContext(StateContext)
+  const { tasks, user, isVisible } = useContext(StateContext)
   const dispatch = useContext(DispatchContext)
   const [loading, setLoading] = useState(true)
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const tasks = await fetchTasks()
         dispatch({ type: 'set-tasks', tasks: tasks })
         setLoading(false)
       } catch (e) { console.log(e) }
