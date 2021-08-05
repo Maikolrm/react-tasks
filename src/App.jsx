@@ -21,7 +21,7 @@ import DispatchContext from './DispatchContext'
 
 export const App = () => {
   const initialState = {
-    tasks: Boolean(localStorage.getItem('tasks')) ? JSON.parse(localStorage.getItem('tasks')) : [],
+    tasks: [],
     user: JSON.parse(localStorage.getItem('user')),
     loggedIn: Boolean(localStorage.getItem('user')),
     isVisible: false,
@@ -35,7 +35,6 @@ export const App = () => {
         break
       case 'logout':
         draft.loggedIn = false
-        draft.tasks = []
         break
       case 'show-form':
         draft.isVisible = action.value
@@ -58,6 +57,14 @@ export const App = () => {
       localStorage.removeItem('user')
     }
   }, [state.loggedIn])
+  // WATCH FOR TAKS CHANGES
+  useEffect(() => {
+    if (state.tasks.length) {
+      localStorage.setItem('tasks', JSON.stringify(state.tasks))
+    } else {
+      localStorage.removeItem('tasks')
+    }
+  }, [state.tasks])
   return(
     <StateContext.Provider value={state}>
       <DispatchContext.Provider value={dispatch}>
