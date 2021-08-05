@@ -19,8 +19,8 @@ export const login = (email) => {
 export const fetchTasks = () => {
   return new Promise(async (resolve, reject) => {
     try {
-      const { data } = await axios.get('/fetch-tasks')
-      resolve(data)
+      const response = JSON.parse(localStorage.getItem('tasks'))
+      setTimeout(() => resolve(response ? response : []), 400)
     } catch (e) { reject(e) }
   }) // PPROMISE END
 }
@@ -30,27 +30,26 @@ export const handleTasks = (action, tasks, params) => {
   return new Promise(async (resolve, reject) => {
     try {
       let taskCopy = [...tasks]
-      const { data } = await axios.post(`${action}-task`, params)
       switch (action) {
         case 'create':
-          taskCopy.unshift(data)
+          taskCopy.unshift({ id: Math.random(), description: params.description, completed: 0 })
           break
         case 'delete':
           taskCopy = taskCopy.filter(task => task.id !== params.id)
           break
         case 'complete':
           taskCopy = taskCopy.map(task => {
-            if (task.id === params.id)  return { ...task, completed: data.completed }
+            if (task.id === params.id)  return { ...task, completed: params.completed }
             return task
           }) // MAP END
           break
         case 'update':
           taskCopy = taskCopy.map(task => {
-            if (task.id === params.id) return { ...task, description: data.description }
+            if (task.id === params.id) return { ...task, description: params.description }
             return task
           }) // MAP END
       }
-      resolve(taskCopy)
+      action !== 'complete' ? setTimeout(() => resolve(taskCopy), 200) : resolve(taskCopy)
     } catch (e) { reject(e) }
   }) // PPROMISE END
 }
